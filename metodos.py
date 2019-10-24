@@ -95,118 +95,131 @@ def rotate2D(self, ang):
         self.points[i][1] = dom[2,1]
     return points
 
+def reflex3D(self, point):
+    x,y,z = point
+    dom = matrix (3 , 1 , [x,y,z])
+    k = Matrix(3,3)
+
+    k[1,1] = 1 
+    k[2,2] = -1
+    k[3,3] = -1 
+
+    dom = k.dot(dom)
+    x = dom[1,1]
+    y = dom[2,1]
+    z = dom[3,1]
+return [x,y,z]
+
+def refley3D(self, point):
+    x,y,z = point
+    dom = matrix (3 , 1 , [x,y,z])
+    k = Matrix(3,3)
+
+    k[1,1] = -1 
+    k[2,2] = 1
+    k[3,3] = -1 
+
+    dom = k.dot(dom)
+    x = dom[1,1]
+    y = dom[2,1]
+    z = dom[3,1]
+return [x,y,z]
+
+def reflez3D(self, point):
+    x,y,z = point
+    dom = matrix (3 , 1 , [x,y,z])
+    k = Matrix(3,3)
+
+    k[1,1] = -1 
+    k[2,2] = -1
+    k[3,3] = 1 
+
+    dom = k.dot(dom)
+    x = dom[1,1]
+    y = dom[2,1]
+    z = dom[3,1]
+return [x,y,z]
 
 
-def reflex3D(self):
-    for i in range(0 , self.points.lenght)
-        dom = matrix (3 , 1 , [self.points[i][0] , self.points[i][1], 1])
-        z = Matrix(3,3)
+def projx3D(self, point):
+    x,y,z = point
+    dom = Matrix(3, 1, [x,y,z])
+    k = Matrix(3,3)
 
-        z[1,1] = 1 
-        z[2,2] = -1
-        z[3,3] = 1 
+    k[1,1] = 1
+    k[2,2] = 0
+    k[3,3] = 0
 
-        dom = z.dot(dom)
-        self.points[i][0] = dom[1,1]
-        self.points[i][1] = dom[2,1]
-        self.points[i][2] = dom[3,1]
-    return points
+    dom = k.dot(dom)
+    self.points[i][0] = dom[1,1]
+    self.points[i][1] = dom[2,1]
+    self.points[i][2] = dom[3,1]
+return [x,y,z]
 
-def refley3D(self):
-    for i in range(0 , self.points.lenght)
-        dom = matrix (3 , 1 , [self.points[i][0] , self.points[i][1], 1])
-        z = Matrix(3,3)
+def projy3D(self, point):
+    x,y,z = point
+    dom = Matrix(3, 1, [x,y,z])
+    k = Matrix(3,3)
 
-        z[1,1] = -1 
-        z[2,2] = 1
-        z[3,3] = 1 
+    k[1,1] = 0
+    k[2,2] = 1
+    k[3,3] = 0
 
-        dom = z.dot(dom)
-        self.points[i][0] = dom[1,1]
-        self.points[i][1] = dom[2,1]
-        self.points[i][2] = dom[3,1]
-    return points
+    dom = k.dot(dom)
+    x = dom[1,1]
+    y = dom[2,1]
+    z = dom[3,1] 
+return [x,y,z]
 
-def reflez3D(self):
-    for i in range(0 , self.points.lenght)
-        dom = matrix (3 , 1 , [self.points[i][0] , self.points[i][1], 1])
-        z = Matrix(3,3)
+def projz3D(self, point):
+    x,y,z = point
+    dom = Matrix(3, 1, [x,y,z])
+    k = Matrix(3,3)
 
-        z[1,1] = 1 
-        z[2,2] = 1
-        z[3,3] = 1 
+    k[1,1] = 0
+    k[2,2] = 0
+    k[3,3] = 1
 
-        dom = z.dot(dom)
-        self.points[i][0] = dom[1,1]
-        self.points[i][1] = dom[2,1]
-        self.points[i][2] = dom[3,1]
-    return points
+    dom = k.dot(dom)
+    x = dom[1,1]
+    y = dom[2,1]
+    z = dom[3,1] 
+return [x,y,z]
 
+def rotatex3D(self, point,ang):
+    x,y,z = point
+    dom = Matrix(3, 1, [x,y,z])
+    k = Matrix(3,3)
 
-def projx3D(self):
-    for i in range(0, self.points.lenght):
-        dom = Matrix(3, 1, [self.points[i][0],self.points[i][1], 1])
-        z = Matrix(3,3)
+    k[1,1] = 1
+    k[2,2] = cos(ang)
+    k[2,3] = -sin(ang)
+    k[2,3] = sin(ang)
+    k[3,3] = cos(ang)
 
-        z[1,1] = 1
-        z[2,2] = 0
-        z[3,3] = 0
+    dom = k.dot(dom)
+    x = dom[1,1]
+    y = dom[2,1]
+    z = dom[3,1] 
+return [x,y,z]
 
-        dom = z.dot(dom)
-        self.points[i][0] = dom[1,1]
-        self.points[i][1] = dom[2,1]
-        self.points[i][2] = dom[3,1]
-    return points
+def rotatey3D(self, point,ang):
+    x,y,z = point
+    dom = Matrix(3, 1, [x,y,z])
+    k = Matrix(3,3)
 
-def projy3D(self):
-    for i in range(0, self.points.lenght):
-        dom = Matrix(3, 1, [self.points[i][0],self.points[i][1], 1])
-        z = Matrix(3,3)
+    k[1,1] = sin(ang)
+    k[1,2] = cos(ang) 
+    k[1,2] = -sin(ang) 
+    k[2,2] = 1
+    k[3,3] = cos(ang)
 
-        z[1,1] = 0
-        z[2,2] = 1
-        z[3,3] = 0
+    dom = k.dot(dom)
+    x = dom[1,1]
+    y = dom[2,1]
+    z = dom[3,1] 
+return [x,y,z]
 
-        dom = z.dot(dom)
-        self.points[i][0] = dom[1,1]
-        self.points[i][1] = dom[2,1]
-        self.points[i][2] = dom[3,1] 
-    return points
-
-def projz3D(self):
-    for i in range(0, self.points.lenght):
-        dom = Matrix(3, 1, [self.points[i][0],self.points[i][1], 1])
-        z = Matrix(3,3)
-
-        z[1,1] = 0
-        z[2,2] = 0
-        z[3,3] = 1
-
-        dom = z.dot(dom)
-        self.points[i][0] = dom[1,1]
-        self.points[i][1] = dom[2,1]
-        self.points[i][2] = dom[3,1] 
-    return points
-
-"""
-import sys, math, pygame
-from operator import itemgetter
-
-rotação do eixo x 
-""" 
-class rotate3D: 
-    def __init__(self , x = 0 , y = 0 , z = 0): 
-        self.x = float(x)
-        self.y = float(y)
-        self.z = float(z)
-
-    def rotateX(self, ang): 
-        ang = ang * pi / 180
-        cos = math.cos(ang)
-        sin = math.cos(ang) 
-        y = (self.y * cos - self.z * sin)
-        z = (self.y * sin + self.z *cos)
-        return rotate3D(self.x , y , z)
 
     def rotateY(self, ang): 
         ang = ang * pi / 180
