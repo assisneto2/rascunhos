@@ -208,9 +208,9 @@ def rotatey3D(self, point,ang):
     dom = Matrix(3, 1, [x,y,z])
     k = Matrix(3,3)
 
-    k[1,1] = sin(ang)
-    k[1,2] = cos(ang) 
+    k[1,1] = cos(ang)
     k[1,2] = -sin(ang) 
+    k[2,1] = sin(ang) 
     k[2,2] = 1
     k[3,3] = cos(ang)
 
@@ -221,18 +221,20 @@ def rotatey3D(self, point,ang):
 return [x,y,z]
 
 
-    def rotateY(self, ang): 
-        ang = ang * pi / 180
-        cos = math.cos(ang)
-        sin = math.cos(ang) 
-        z = (self.z * cos - self.x * sin)
-        x = (self.z * sin + self.x *cos)
-        return rotate3D(x , self.y , z)
+def rotatez3D(self, point,ang):
+    x,y,z = point
+    dom = Matrix(3, 1, [x,y,z])
+    k = Matrix(3,3)
 
-    def rotateZ(self, ang): 
-        ang = ang * pi / 180
-        cos = math.cos(ang)
-        sin = math.cos(ang) 
-        x = (self.x * cos - self.y * sin)
-        y = (self.x * sin + self.y *cos)
-        return rotate3D(x , y , self.z)
+    k[1,1] = cos(ang)
+    k[1,2] = -sin(ang) 
+    k[2,1] = sin(ang) 
+    k[2,2] = cos(ang)
+    k[3,3] = 1
+
+    dom = k.dot(dom)
+    x = dom[1,1] #
+    y = dom[2,1] #
+    z = dom[3,1] #
+return [x,y,z]
+
