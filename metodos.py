@@ -164,9 +164,9 @@ def projx3D(self, point):
     k[3,3] = 0
 
     dom = k.dot(dom)
-    self.points[i][0] = dom[1,1]
-    self.points[i][1] = dom[2,1]
-    self.points[i][2] = dom[3,1]
+    x = dom[1,1]
+    y = dom[2,1]
+    z = dom[3,1]
 return [x,y,z]
 
 def projy3D(self, point):
