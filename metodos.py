@@ -200,6 +200,7 @@ def projz3D(self, point):
 return [x,y,z]
 
 def rotatex3D(self, point,ang):
+    ang = ang * pi / 180
     x,y,z = point
     dom = Matrix(3, 1, [x,y,z])
     k = Matrix(3,3)
@@ -207,23 +208,24 @@ def rotatex3D(self, point,ang):
     k[1,1] = 1
     k[2,2] = cos(ang)
     k[2,3] = -sin(ang)
-    k[2,3] = sin(ang)
+    k[3,2] = sin(ang)
     k[3,3] = cos(ang)
 
     dom = k.dot(dom)
     x = dom[1,1]
     y = dom[2,1]
     z = dom[3,1] 
-return [x,y,z]
+    return [x,y,z]
 
 def rotatey3D(self, point,ang):
+    ang = ang * pi / 180
     x,y,z = point
     dom = Matrix(3, 1, [x,y,z])
     k = Matrix(3,3)
 
     k[1,1] = cos(ang)
-    k[1,2] = -sin(ang) 
-    k[2,1] = sin(ang) 
+    k[1,3] = sin(ang) 
+    k[3,1] = -sin(ang) 
     k[2,2] = 1
     k[3,3] = cos(ang)
 
@@ -231,10 +233,11 @@ def rotatey3D(self, point,ang):
     x = dom[1,1]
     y = dom[2,1]
     z = dom[3,1] 
-return [x,y,z]
+    return [x,y,z]
 
 
 def rotatez3D(self, point,ang):
+    ang = ang * pi / 180
     x,y,z = point
     dom = Matrix(3, 1, [x,y,z])
     k = Matrix(3,3)
@@ -249,5 +252,5 @@ def rotatez3D(self, point,ang):
     x = dom[1,1] #
     y = dom[2,1] #
     z = dom[3,1] #
-return [x,y,z]
+    return [x,y,z]
 
